@@ -16,10 +16,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
-import Form from "components/Appointment/Form"
-
-
-
+import Form from "components/Appointment/Form";
 
 
 storiesOf("Button", module)
@@ -181,7 +178,7 @@ storiesOf("InterviewerList", module)
       onCancel={action("onCancel")}
     />
   ))
-  .add("Cancel", () => (
+  .add("Edit", () => (
     <Form
       student="Brandon Felty"
       interviewer="0"
