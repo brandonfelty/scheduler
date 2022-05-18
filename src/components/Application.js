@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import DayList from "./DayList";
 import "components/Application.scss";
 
