@@ -15,6 +15,8 @@ import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
+
 
 
 
@@ -164,5 +166,11 @@ storiesOf("InterviewerList", module)
       onCancel={action("onCancel")}
     />
   ))
-  .add("Status", () => <Status message={"Deleting"} />);
+  .add("Status", () => <Status message={"Deleting"} />)
+  .add("Error", () => (
+    <Error 
+      message={"Could not delete appointment."} 
+      onClose={action("onClose")} 
+    />
+  ));
 
