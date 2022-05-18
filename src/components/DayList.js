@@ -9,8 +9,8 @@ const DayList = (props) => {
       key={day.id}
       name={day.name}
       spots={day.spots}
-      selected={day.name === props.day}
-      setDay={() => props.setDay(day.id)}
+      selected={day.name === props.value}
+      setDay={() => props.onChange(day.id)}
       />)
     });
   return (
