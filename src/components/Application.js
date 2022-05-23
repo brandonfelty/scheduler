@@ -14,6 +14,31 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  const bookInterview = (id, interview) => { 
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+        
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    .then((response) => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+    .catch((error) => {
+      console.log("error:", error)
+    })
+                
+  };
+
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
   
   const setDay = day => setState({...state, day});
@@ -43,9 +68,13 @@ export default function Application(props) {
         {...appointment}
         interview={interview}
         interviewers={interviewer}
+        bookInterview={bookInterview}
       />
     );
   })
+
+  
+
   return (
     <main className="layout">
       <section className="sidebar">

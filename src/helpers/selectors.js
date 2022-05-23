@@ -30,7 +30,7 @@ export function getInterviewersForDay(state, day) {
   const interviewersArray = [...filteredDayArr[0].interviewers];
   
   interviewersArray.map((item) => results.push(state.interviewers[item]))
-  console.log(results)
+
   return results;
 }
 
