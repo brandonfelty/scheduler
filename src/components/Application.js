@@ -65,6 +65,10 @@ export default function Application(props) {
     })
   }
 
+  const editInterview = (id, interview) => {
+    console.log("id", id, "interview", interview)
+  }
+
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
   
   const setDay = day => setState({...state, day});
@@ -96,6 +100,7 @@ export default function Application(props) {
         interviewers={interviewer}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
+        editInterview={editInterview}
       />
     );
   })
