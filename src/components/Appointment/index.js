@@ -26,6 +26,10 @@ const Appointment = (props) => {
   //console.log("props",props)
 
   const save = (name, interviewer) => {
+    if (!name || !interviewer) {
+      return alert("please enter student name and select interviewer");
+    }
+
     const interview = {
       student: name,
       interviewer
