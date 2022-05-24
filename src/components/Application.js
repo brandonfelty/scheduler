@@ -32,11 +32,7 @@ export default function Application(props) {
         ...state,
         appointments
       });
-    })
-    .catch((error) => {
-      console.log("error:", error)
-    })
-                
+    })          
   };
 
   const cancelInterview = (id) => {
@@ -59,15 +55,12 @@ export default function Application(props) {
         ...state,
         appointments
       })
-    })
-    .catch((error) => {
-      console.log("error:", error)
-    })
-  }
+    });
+  };
 
   const editInterview = (id, interview) => {
     console.log("id", id, "interview", interview)
-  }
+  };
 
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
   

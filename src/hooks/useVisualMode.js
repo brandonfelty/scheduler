@@ -7,9 +7,9 @@ export default function useVisualMode(initial) {
   function transition(prevMode, replace = false) {
     if (replace) {
       console.log(replace)
-      setHistory([...history])
+      setHistory(prev => ([...prev]))
     } else {
-      setHistory([...history, prevMode])
+      setHistory(prev => ([...prev, prevMode]))
     }
 
     setMode(prevMode)
