@@ -8,6 +8,8 @@ const Form = (props) => {
   const [error, setError] = useState("");
 
   const validate = () => {
+    
+
     if (student === "") {
       setError("Student name cannot be blank");
       return;
@@ -17,7 +19,8 @@ const Form = (props) => {
       setError("Please select an interviewer");
       return;
     }
-
+    
+    setError("");
     props.onSave(student, interviewer);
   }
 
