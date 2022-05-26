@@ -10,21 +10,22 @@ const useApplicationData = () => {
     interviewers: {}
   });
   
+  // resets the day state 
   const setDay = day => setState({...state, day});
 
+  // counts the spots in a given day
   const countSpots = (state) => {
-    console.log("state", state)
+
     const currentDay = state.days.find(day => day.name === state.day);
-    console.log("current day", currentDay)
     const appointmentIds = currentDay.appointments;
-    console.log("appointmentId's", appointmentIds)
+
     const spots = appointmentIds.filter(id => 
       state.appointments[id].interview === null).length;
-      //!state.appointments[id]
-    console.log("spots", spots)
+
     return spots;
   };
 
+  // function returns state with updated spots available
   const updateSpots = (state) => {
     const updatedState = { ...state };
     const updatedDays = [ ...state.days ];
@@ -40,9 +41,8 @@ const useApplicationData = () => {
 
     return updatedState;
   }
-
-  //console.log("updatedspots(state)", updateSpots(state))
   
+  // adds appointment to database and updates state with new appointment
   const bookInterview = (id, interview) => { 
     
     const appointment = {
@@ -64,14 +64,13 @@ const useApplicationData = () => {
         
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
     .then((response) => {
-      //const updatedState = updateSpots(state)
-      //console.log("updated state", updatedState)
       setState((prev) => ({
         ...updatedStateSpots
       }));
     })          
   };
 
+  // removes appointment from database and updates state to remove interview
   const cancelInterview = (id) => {
     console.log("id", id)
 
@@ -91,11 +90,9 @@ const useApplicationData = () => {
     };
 
     const updatedStateSpots = updateSpots(updatedState)
-
     
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
     .then((response) => {
-      //const updatedState = updateSpots(state)
       setState(prev => ({
         ...updatedStateSpots
       }))
