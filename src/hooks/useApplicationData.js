@@ -72,7 +72,6 @@ const useApplicationData = () => {
 
   // removes appointment from database and updates state to remove interview
   const cancelInterview = (id) => {
-    console.log("id", id)
 
     const appointment = {
       ...state.appointments[id],
@@ -99,10 +98,6 @@ const useApplicationData = () => {
     });
   };
 
-  const editInterview = (id, interview) => {
-    console.log("id", id, "interview", interview)
-  };
-
 
   useEffect(() => {
     Promise.all([
@@ -124,7 +119,7 @@ const useApplicationData = () => {
     setDay,
     bookInterview,
     cancelInterview,
-    editInterview
+    //editInterview
   };
 };
 

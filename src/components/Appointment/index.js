@@ -23,12 +23,8 @@ const Appointment = (props) => {
   const {mode, transition, back} = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  //console.log("props",props)
 
   const save = (name, interviewer) => {
-    // if (!name || !interviewer) {
-    //   return alert("please enter student name and select interviewer");
-    // }
 
     const interview = {
       student: name,
@@ -62,14 +58,10 @@ const Appointment = (props) => {
     });
   };
 
+
+  // transitions to 
   const edit = (name, interviewer) => {
-    const interview = {
-      student: name,
-      interviewer
-    }
     transition(EDIT)
-    console.log("props", props)
-    props.editInterview(props.id, interview)
   }; 
 
   return (
