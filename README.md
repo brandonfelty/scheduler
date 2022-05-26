@@ -6,9 +6,9 @@ This was a great opportunity to learn about React, Axios, Webpack, Babel and tes
 
 ## Final Product
 
-!["Editing an appointment"](https://github.com/brandonfelty/tweeter/blob/master/docs/Editing.png)
-!["Confirm message"](https://github.com/brandonfelty/tweeter/blob/master/docs/Confirm.png)
-!["Error when changing appointment"](https://github.com/brandonfelty/tweeter/blob/master/docs/Error.png)
+!["Editing an appointment"](https://github.com/brandonfelty/scheduler/blob/master/docs/Editing.png)
+!["Confirm message"](https://github.com/brandonfelty/scheduler/blob/master/docs/Confirm.png)
+!["Error when changing appointment"](https://github.com/brandonfelty/scheduler/blob/master/docs/Error.png)
 
 ## Getting Started
 
