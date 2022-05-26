@@ -1,5 +1,6 @@
 import React from "react";
 
+// spining status symbol card
 const Status = (props) => {
   return (
     <main className="appointment__card appointment__card--status">
@@ -11,6 +12,6 @@ const Status = (props) => {
       <h1 className="text--semi-bold">{props.message}</h1>
     </main>
   );
-}
+};
 
 export default Status;

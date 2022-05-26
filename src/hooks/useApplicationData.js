@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useApplicationData = () => {
@@ -9,9 +9,9 @@ const useApplicationData = () => {
     appointments: {},
     interviewers: {}
   });
-  
+
   // resets the day state 
-  const setDay = day => setState({...state, day});
+  const setDay = day => setState({ ...state, day });
 
   // counts the spots in a given day
   const countSpots = (state) => {
@@ -19,7 +19,7 @@ const useApplicationData = () => {
     const currentDay = state.days.find(day => day.name === state.day);
     const appointmentIds = currentDay.appointments;
 
-    const spots = appointmentIds.filter(id => 
+    const spots = appointmentIds.filter(id =>
       state.appointments[id].interview === null).length;
 
     return spots;
@@ -28,9 +28,9 @@ const useApplicationData = () => {
   // function returns state with updated spots available
   const updateSpots = (state) => {
     const updatedState = { ...state };
-    const updatedDays = [ ...state.days ];
+    const updatedDays = [...state.days];
     const updatedDay = { ...state.days.find(day => day.name === state.day) };
-    
+
     const spots = countSpots(state);
     updatedDay.spots = spots;
 
@@ -40,11 +40,11 @@ const useApplicationData = () => {
     updatedState.days = updatedDays;
 
     return updatedState;
-  }
-  
+  };
+
   // adds appointment to database and updates state with new appointment
-  const bookInterview = (id, interview) => { 
-    
+  const bookInterview = (id, interview) => {
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -60,14 +60,14 @@ const useApplicationData = () => {
       appointments
     };
 
-    const updatedStateSpots = updateSpots(updatedState)
-        
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
-    .then((response) => {
-      setState((prev) => ({
-        ...updatedStateSpots
-      }));
-    })          
+    const updatedStateSpots = updateSpots(updatedState);
+
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+      .then((response) => {
+        setState((prev) => ({
+          ...updatedStateSpots
+        }));
+      });
   };
 
   // removes appointment from database and updates state to remove interview
@@ -88,17 +88,17 @@ const useApplicationData = () => {
       appointments
     };
 
-    const updatedStateSpots = updateSpots(updatedState)
-    
+    const updatedStateSpots = updateSpots(updatedState);
+
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-    .then((response) => {
-      setState(prev => ({
-        ...updatedStateSpots
-      }))
-    });
+      .then((response) => {
+        setState(prev => ({
+          ...updatedStateSpots
+        }));
+      });
   };
 
-
+  // gets all all the data from our database on the first render
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
@@ -110,16 +110,16 @@ const useApplicationData = () => {
         days: all[0].data,
         appointments: all[1].data,
         interviewers: all[2].data
-      }))
-    })}
-    ,[]);
+      }));
+    });
+  }
+    , []);
 
   return {
     state,
     setDay,
     bookInterview,
     cancelInterview,
-    //editInterview
   };
 };
 

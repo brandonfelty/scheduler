@@ -7,20 +7,26 @@ import useApplicationData from "hooks/useApplicationData.js";
 
 
 export default function Application(props) {
+
+  // grab from custom hook
   const {
     state,
     setDay,
     bookInterview,
     cancelInterview,
   } = useApplicationData();
-  
-  const interviewers = getInterviewersForDay(state, state.day)
-  
-  const dailyAppointments =  getAppointmentsForDay(state, state.day);
-  const mappedAppointments = dailyAppointments.map((appointment) => {    
-    const interview = getInterview(state, appointment.interview)
+
+  // store interviewers for day
+  const interviewers = getInterviewersForDay(state, state.day);
+
+  // get the daily appointments for the day 
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  // return each appointment with the following props
+  const mappedAppointments = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
     return (
-      <Appointment 
+      <Appointment
         key={appointment.id}
         {...appointment}
         interview={interview}
@@ -29,8 +35,9 @@ export default function Application(props) {
         cancelInterview={cancelInterview}
       />
     );
-  })
+  });
 
+  // main html with daylist and appointments
   return (
     <main className="layout">
       <section className="sidebar">
@@ -41,11 +48,11 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-        <DayList
-          days={state.days}
-          value={state.day}
-          onChange={setDay}
-        />
+          <DayList
+            days={state.days}
+            value={state.day}
+            onChange={setDay}
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"

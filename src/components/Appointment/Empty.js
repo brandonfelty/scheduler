@@ -1,5 +1,6 @@
 import React from "react";
 
+// appointment card when empty
 const Empty = (props) => {
   return (
     <main className="appointment__add">
@@ -11,6 +12,6 @@ const Empty = (props) => {
       />
     </main>
   );
-}
+};
 
 export default Empty;

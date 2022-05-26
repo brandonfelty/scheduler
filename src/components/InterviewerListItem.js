@@ -4,11 +4,14 @@ import "components/InterviewerListItem.scss";
 
 
 
-export default function InterviewerListItem (props) {
+export default function InterviewerListItem(props) {
+
+  // toggle interviewer selected class
   const interviewerClass = classNames({
     "interviewers__item": true,
     "interviewers__item--selected": props.selected
-  })
+  });
+
   return (
     <li onClick={props.setInterviewer} className={interviewerClass}>
       <img

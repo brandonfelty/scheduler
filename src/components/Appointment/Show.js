@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// html for visible appointment card
 const Show = (props) => {
   return (
     <main className="appointment__card appointment__card--show">
@@ -28,6 +30,6 @@ const Show = (props) => {
       </section>
     </main>
   );
-}
+};
 
 export default Show;

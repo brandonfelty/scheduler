@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "components/Button";
 
+// confirm card
 const Confirm = (props) => {
   return (
     <main className="appointment__card appointment__card--confirm">
@@ -11,6 +12,6 @@ const Confirm = (props) => {
       </section>
     </main>
   );
-}
+};
 
 export default Confirm;
