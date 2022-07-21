@@ -1,12 +1,38 @@
 import React from "react";
+import axios from "axios";
 
-import { render, cleanup, waitForElement, fireEvent, prettyDOM, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, prettyDOM, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText, getByTestId } from "@testing-library/react";
 
 import Application from "components/Application";
 
 afterEach(cleanup);
 
 describe("Application", () => {
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    // 1. Render the Application.
+    const { container } = render(<Application />);
+
+    // 2. Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    // 3. Click the "Edit" button on the booked appointment.
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[1];
+
+    fireEvent.click(queryByAltText(appointment, "Edit"));
+
+    // 4. Change the student name and save the interview
+    fireEvent.change(getByTestId(appointment, "student-name-input"), {target: {value: "BDAWG"}})
+    fireEvent.submit(getByText(appointment, "Save"));
+
+    // 5. Check that the DayListItem with the text "Monday" also has the text "1 spots remaining".
+    const day = getAllByTestId(container, "day").find(day => 
+      queryByText(day, "Monday")
+    );
+
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+  });
+
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
     const { container } = render(<Application />);
@@ -38,7 +64,7 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day => 
       queryByText(day, "Monday")
     );
-    
+
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
@@ -77,6 +103,10 @@ describe("Application", () => {
       fireEvent.click(getByText("Tuesday"));
       expect(getByText("Leopold Silvers")).toBeInTheDocument();
     });
+  });
+
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
   });
 });
 
